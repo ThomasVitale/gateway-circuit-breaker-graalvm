@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: demo-route
+          uri: https://httpbin.org
+          predicates:
+            - Path=/demo/**
+          filters:
+            - RewritePath=/demo/?(?<segment>.*), /$\{segment}
+            - name: CircuitBreaker
+              args:
+                name: demoCircuitBreaker
+                fallbackUri: forward:/demo-fallback
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      demoCircuitBreaker:
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        registerHealthIndicator: true
+  timelimiter:
+    instances:
+      demoCircuitBreaker:
+        timeoutDuration: 1s

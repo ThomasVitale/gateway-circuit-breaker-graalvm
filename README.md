@@ -1,1 +1,44 @@
-# gateway-circuit-breaker-graalvm
+# Sample for native compilation with Spring Cloud Gateway and Circuit Breaker
+
+Use a GraalVM distribution:
+
+```shell
+sdk use java 22.3.r17-grl
+```
+
+Ensure you have the native-image module installed:
+
+```shell
+gu install native-image
+```
+
+Compile the Spring Boot application to a native executable:
+
+```shell
+cd demo
+./gradlew nativeCompile
+```
+
+Try running the application native executable:
+
+```shell
+./demo/build/native/nativeCompile/demo
+```
+
+The application startup will fail with the following error:
+
+```shell
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under '' to org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory$Config:
+
+    Reason: java.lang.NoSuchMethodException: org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory$Config.<init>()
+
+Action:
+
+Update your application's configuration
+```
