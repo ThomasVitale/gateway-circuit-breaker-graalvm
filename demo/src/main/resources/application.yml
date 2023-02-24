@@ -25,4 +25,4 @@ resilience4j:
   timelimiter:
     instances:
       demoCircuitBreaker:
-        timeoutDuration: 1s
+        timeoutDuration: 3s
