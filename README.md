@@ -22,7 +22,7 @@ cd demo
 Try running the application native executable:
 
 ```shell
-./demo/build/native/nativeCompile/demo
+./build/native/nativeCompile/demo
 ```
 
 The application startup will fail with the following error:
