@@ -1,5 +1,17 @@
 # Sample for native compilation with Spring Cloud Gateway and Circuit Breaker
 
+Run the application on the JVM:
+
+```shell
+./gradlew bootRun
+```
+
+Verify the application works correctly:
+
+```shell
+http :8080/demo/get
+```
+
 Use a GraalVM distribution:
 
 ```shell
